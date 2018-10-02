@@ -24,46 +24,63 @@ public class ProblemCannibals extends Problem {
         StateCannibals can_state = (StateCannibals) state;
         
         //Let's create without any constraint, then remove the illegal ones
-        StateCannibals successor_state;
         
         //one cannibal only from left to right
-        successor_state = new StateCannibals(can_state);
-        successor_state.canArray[cannL] -= 1;
-        successor_state.canArray[cannR] += 1;
+        moveRight(0, 1, can_state, set);
+
+        //one cannibal only from right to left
+        moveLeft(0, 1, can_state, set);
+        
+        //two cannibals from left to right
+        moveRight(0, 2, can_state, set);
+        
+        //two cannibals from right to left 
+        moveLeft(0, 2, can_state, set);
+        
+        //one missionary only from left to right 
+        moveRight(1, 0, can_state, set);
+        
+        //one missionary only from right to left 
+        moveLeft(1, 0, can_state, set);
+        
+        //two missionaries from left to right 
+        moveRight(2, 0, can_state, set);
+        
+        //two missionaries from right to left 
+        moveLeft(2, 0, can_state, set);
+        
+        //one cannibal and one missionary from left to right 
+        moveRight(1, 1, can_state, set);
+        
+        //one cannibal and one missionary from right to left 
+        moveLeft(1, 1, can_state, set);
+
+        return set;
+    }
+
+    private StateCannibals moveCommon(int numMissionaries, int numCannibals, StateCannibals can_state){
+        StateCannibals successor_state = new StateCannibals(can_state);
+        successor_state.canArray[cannL] -= numCannibals;
+        successor_state.canArray[cannR] += numCannibals;
+        successor_state.canArray[missL] -= numMissionaries;
+        successor_state.canArray[missR] += numMissionaries;
+        return successor_state;
+    }
+
+    private void moveRight(int numMissionaries, int numCannibals, StateCannibals can_state, Set<Object> set){
+        StateCannibals successor_state = moveCommon(numMissionaries, numCannibals, can_state);
         successor_state.canArray[boatL] -= 1;
         successor_state.canArray[boatR] += 1;
         if (isValid(successor_state)) set.add(successor_state);
-
-        //one cannibal only from right to left
-        //TODO        
-        
-        //two cannibals from left to right
-        //TODO
-        
-        //two cannibals from right to left 
-        //TODO        
-        
-        //one missionary only from left to right 
-        //TODO
-        
-        //one missionary only from right to left 
-        //TODO
-        
-        //two missionaries from left to right 
-        //TODO
-        
-        //two missionaries from right to left 
-        //TODO
-        
-        //one cannibal and one missionary from left to right 
-        //TODO
-        
-        //one cannibal and one missionary from right to left 
-        //TODO 
-        
-        return set;
     }
     
+    private void moveLeft(int numMissionaries, int numCannibals, StateCannibals can_state, Set<Object> set){
+        StateCannibals successor_state = moveCommon(-numMissionaries, -numCannibals, can_state);
+        successor_state.canArray[boatL] += 1;
+        successor_state.canArray[boatR] -= 1;
+        if (isValid(successor_state)) set.add(successor_state);
+    }
+
     private boolean isValid(StateCannibals state)
     {   
         //Checking to see if any element of the array is negative 
@@ -72,10 +89,13 @@ public class ProblemCannibals extends Problem {
         
         //Checking to see if the numbers of cannibals, missionaries, and boat 
         //are more then 3,3,1 respectively
-        //TODO
+        if (state.canArray[cannL] > 3 || state.canArray[cannR] > 3) return false;
+        if (state.canArray[missL] > 3 || state.canArray[missR] > 3) return false;
+        if (state.canArray[boatL] > 1 || state.canArray[boatR] > 1) return false;
         
         //Now, checking if cannibals out number missionaries
-        //TODO
+        if (state.canArray[cannL] > state.canArray[missL] && state.canArray[missL] > 0) return false;
+        if (state.canArray[cannR] > state.canArray[missR] && state.canArray[missR] > 0) return false;
         
         return true;
     }
@@ -95,5 +115,13 @@ public class ProblemCannibals extends Problem {
 		System.out.println("BreadthFirstTreeSearch:\t\t" + search.BreadthFirstTreeSearch());
 
 		System.out.println("BreadthFirstGraphSearch:\t" + search.BreadthFirstGraphSearch());
-	}
+
+        System.out.println("DepthFirstTreeSearch:\t" + search.DepthFirstTreeSearch());
+
+        System.out.println("DepthFirstGraphSearch:\t" + search.DepthFirstGraphSearch());
+
+        System.out.println("IterativeDeepeningTreeSearch:\t" + search.IterativeDeepeningTreeSearch());
+
+        System.out.println("IterativeDeepeningGraphSearch:\t" + search.IterativeDeepeningGraphSearch());
+    }
 }
