@@ -93,5 +93,9 @@ public class ProblemMap extends Problem {
 		System.out.println("AstarTreeSearch:\t" + search.AstarTreeSearch());
 
 		System.out.println("AstarGraphSearch:\t" + search.AstarGraphSearch());
+
+		System.out.println("IterativeDeepeningTreeSearch:\t" + search.IterativeDeepeningTreeSearch());
+
+		System.out.println("IterativeDeepeningGraphSearch:\t" + search.IterativeDeepeningGraphSearch());
 	}
 }
