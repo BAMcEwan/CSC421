@@ -178,10 +178,10 @@ public class Search {
 			if( problem.goal_test(node.state) )
 				return Solution(node);
 
-<<<<<<< HEAD
-			if( !explored.contains(node.state) && node.depth < limit ) {
+			if( !explored.contains(node.state) ) {
 				explored.add(node.state);
-				frontier.insertAll(Expand(node,problem));
+				if(node.depth < limit)
+					frontier.insertAll(Expand(node,problem));
 				cnt++;
 			}
 		}
@@ -198,15 +198,6 @@ public class Search {
 			if(n.parent_node == node)
 				PrintTree(n);
 		}
-=======
-			if( !explored.contains(node.state) ) {
-				explored.add(node.state);
-				if(node.depth < limit)
-					frontier.insertAll(Expand(node,problem));
-				cnt++;
-			}
-		}
->>>>>>> master
 	}
 
 	private Node MakeNode(Object state) {
