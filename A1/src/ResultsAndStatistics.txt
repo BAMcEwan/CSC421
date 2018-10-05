@@ -1,0 +1,81 @@
+Q1:
+
+Results:
+
+BreadthFirstTreeSearch:         (cost=568.0, expansions=39)     Timisoara Arad Sibiu Fagaras Bucharest
+BreadthFirstGraphSearch:        (cost=568.0, expansions=12)     Timisoara Arad Sibiu Fagaras Bucharest
+DepthFirstTreeSearch:   (cost=5358.0, expansions=55)    Timisoara Lugoj Mehadia Lugoj Mehadia Lugoj Mehadia Drobeta Craiova Drobeta Craiova Pitesti Craiova Drobeta Mehadia Lugoj Timisoara Lugoj Mehadia Drobeta Mehadia Lugoj Mehadia Lugoj Mehadia Lugoj Timisoara Lugoj Mehadia Lugoj Timisoara Arad Sibiu Oradea Sibiu Arad Timisoara Arad Zerind Oradea Zerind Arad Zerind Oradea Zerind Arad Zerind Arad Sibiu Rimnicu Craiova Pitesti Rimnicu Craiova Pitesti Bucharest
+DepthFirstGraphSearch:  (cost=568.0, expansions=4)      Timisoara Arad Sibiu Fagaras Bucharest
+UniformCostTreeSearch:  (cost=536.0, expansions=93)     Timisoara Arad Sibiu Rimnicu Pitesti Bucharest
+UniformCostGraphSearch: (cost=536.0, expansions=12)     Timisoara Arad Sibiu Rimnicu Pitesti Bucharest
+GreedyBestFirstTreeSearch:      (cost=615.0, expansions=6)      Timisoara Lugoj Mehadia Drobeta Craiova Pitesti Bucharest
+GreedyBestFirstGraphSearch:     (cost=615.0, expansions=6)      Timisoara Lugoj Mehadia Drobeta Craiova Pitesti Bucharest
+AstarTreeSearch:        (cost=536.0, expansions=11)     Timisoara Arad Sibiu Rimnicu Pitesti Bucharest
+AstarGraphSearch:       (cost=536.0, expansions=10)     Timisoara Arad Sibiu Rimnicu Pitesti Bucharest
+IterativeDeepeningTreeSearch:   (cost=568.0, expansions=36)     Timisoara Arad Sibiu Fagaras Bucharest
+IterativeDeepeningGraphSearch:  (cost=568.0, expansions=6)      Timisoara Arad Sibiu Fagaras Bucharest
+
+Summary:
+
+A* tree and graph searches both found the optimal result, uniform tree and graph search did as well but with a much larger number of expansions.
+From there we look at BFS tree and graph searches, ItterativeDeepening tree and graph searches, and DFS graph search.
+These agorithms found the shallowest solution to the problem, although this was not optimal. DFS graph search in the example result above had the least
+expansions, followed by iterative deeping graph search, and then BFS graph search. The mentioned tree searching algorithms took more expansions to find
+this solution. Looking now at the agorithms that did the worst we have greedy-best tree and graph searchs and DFS tree search. The results for the greedy-best
+point the the fact that just considering straight line distance on it's own is not the best heuristic. If compared to A* which also takes into account the 
+weight of a given path into the heuristic function, f = g + h, we can see that it is much better. The DFS tree search performed terribly, but this is not 
+unexpected. Given that the nodes are added to the search tree in no specific order this algorithm could be the best or the worst dependent solely on what is
+leftmost on the search tree. This inconsistancy makes it sub-optimal for a connected tree such as the Romania map.
+
+Q2:
+
+
+Q3:
+
+See code, TODO sections completed as required. Q5 results also show results from uninformed search algorithms
+
+Q4:
+
+Results:
+
+BreadthFirstTreeSearch:         (cost=23.0, expansions=44)       0 0 0  12 0 0  9 0 3  1 8 3
+BreadthFirstGraphSearch:        (cost=23.0, expansions=27)       0 0 0  12 0 0  4 8 0  1 8 3
+DepthFirstTreeSearch:   (cost=426.0, expansions=75)      0 0 0  0 0 3  0 3 0  0 0 0  0 0 3  0 0 0  0 8 0  8 0 0  0 0 0  0 0 3  3 0 0  0 3 0  0 8 0  0 8 3  0 8 0  8 0 0  0 8 0  0 8 3  12 8 3  0 8 3  0 8 0  0 8 3  0 0 3  0 3 0  0 3 3  12 3 3  7 8 3  7 0 3  10 0 0  10 8 0  7 8 3  12 3 3  12 8 3  0 8 3  0 8 0  0 5 3  0 0 3  12 0 3  12 3 0  12 8 0  9 8 3  12 8 0  12 0 0  12 0 3  12 3 0  9 3 3  12 3 3  12 3 0  0 3 0  0 0 0  0 0 3  0 8 3  12 8 3  12 8 0  12 8 3  12 0 3  12 0 0  4 8 0  4 0 0  4 0 3  0 0 3  0 3 0  0 8 0  8 0 0  0 0 0  0 8 0  12 8 0  0 8 0  0 8 3  0 0 3  12 0 3  12 0 0  4 8 0  4 0 0  0 4 0  0 1 3
+DepthFirstGraphSearch:  (cost=158.0, expansions=35)      0 0 0  0 8 0  0 8 3  3 8 0  12 8 0  12 8 3  12 0 3  12 3 0  7 8 0  7 5 3  7 0 3  7 8 3  10 8 0  10 5 3  10 5 0  10 2 3  4 8 3  4 0 3  0 4 3  0 0 3  0 3 0  3 0 0  3 0 3  3 8 3  6 8 0  6 8 3  12 2 3  12 5 0  9 8 0  9 5 3  9 8 3  9 0 3  9 0 0  12 0 0  4 8 0  1 8 3
+IterativeDeepeningTreeSearch:   (cost=23.0, expansions=44)       0 0 0  12 0 0  4 8 0  1 8 3
+IterativeDeepeningGraphSearch:  (cost=26.0, expansions=21)       0 0 0  12 0 0  9 0 3  9 0 0  1 8 0
+
+Summary:
+
+No algorithm found this more optimal solution [0 0 0  0 0 3  0 3 0  0 3 3  0 6 0  0 6 3  0 8 1] at a cost of 17. This makes sense for breadth first search and iterative deepening search because this solution requires more states, and would return before reaching this solution.
+Depth first search hypothetically could find this solution given a randomized state selection, but will on average produce very inefficient solutions.
+
+Q5:
+
+Results:
+
+BreadthFirstTreeSearch:         (cost=11.0, expansions=11714)    3 3 1 0 0 0  2 2 0 1 1 1  2 3 1 1 0 0  0 3 0 3 0 1  1 3 1 2 0 0  1 1 0 2 2 1  2 2 1 1 1 0  2 0 0 1 3 1  3 0 1 0 3 0  1 0 0 2 3 1  2 0 1 1 3 0  0 0 0 3 3 1
+BreadthFirstGraphSearch:        (cost=11.0, expansions=14)       3 3 1 0 0 0  2 2 0 1 1 1  2 3 1 1 0 0  0 3 0 3 0 1  1 3 1 2 0 0  1 1 0 2 2 1  2 2 1 1 1 0  2 0 0 1 3 1  3 0 1 0 3 0  1 0 0 2 3 1  1 1 1 2 2 0  0 0 0 3 3 1
+DepthFirstTreeSearch:   (cost=347.0, expansions=347)     3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  2 2 0 1 1 1  3 3 1 0 0 0  2 2 0 1 1 1  2 3 1 1 0 0  1 3 0 2 0 1  2 3 1 1 0 0  1 3 0 2 0 1  33 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  1 3 0 2 0 1  2 3 1 1 0 0  1 3 0 2 0 1  3 3 1 0 0 0  2 2 0 1 1 1  3 3 1 0 0 0  2 2 0 1 1 1  3 3 1 0 0 0  2 2 0 1 1 1  3 3 1 0 0 0  1 3 0 2 0 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  1 3 0 2 0 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  1 3 0 2 0 1  3 3 1 0 0 0  2 2 0 1 1 1  2 3 1 1 0 0  1 3 0 2 0 1  2 3 1 1 0 0  2 2 0 1 1 1  2 3 1 1 0 0  0 3 0 3 0 1  2 3 1 1 0 0  1 3 0 2 0 1  2 3 1 1 0 0  0 3 0 3 0 1  1 3 1 2 0 0  0 3 0 3 0 1  2 3 1 1 0 0  1 3 0 2 0 1  2 3 1 1 0 0  2 2 0 1 1 1  3 3 1 0 0 0  2 3 0 1 01  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  1 3 0 2 0 1  2 3 1 1 0 0  2 2 0 1 1 1  2 3 1 1 0 0  1 3 0 2 0 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  1 3 0 2 0 1  2 31 1 0 0  1 3 0 2 0 1  3 3 1 0 0 0  2 2 0 1 1 1  2 3 1 1 0 0  1 3 0 2 0 1  2 3 1 1 0 0  2 2 0 1 1 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  2 2 0 1 1 1  3 3 1 0 0 0  1 3 0 2 0 1  3 3 1 0 0 0  1 3 0 2 0 1  2 3 1 1 0 0  2 2 0 1 1 1  2 3 1 1 0 0  2 2 0 1 1 1  2 3 1 1 0 0  1 3 0 2 0 1  2 3 1 1 0 0  1 3 0 2 0 1  3 3 1 0 0 0  2 2 0 1 1 1  2 3 1 1 0 0  2 2 0 1 1 1  3 3 1 0 0 0  2 2 0 1 1 1  2 3 1 1 0 0  2 2 0 1 1 1  2 3 1 1 0 0  2 2 0 1 1 1  3 3 1 0 0 0  1 3 0 2 0 1  2 3 1 1 0 0  1 3 0 2 0 1  3 3 1 0 0 0  1 3 0 2 0 1  2 3 1 1 0 0  0 3 0 3 0 1  2 3 1 1 0 0  2 2 0 1 1 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  2 2 0 1 1 1 2 3 1 1 0 0  2 2 0 1 1 1  3 3 1 0 0 0  2 2 0 1 1 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  1 3 0 2 0 1  2 3 1 1 0 0  0 3 0 3 0 1  2 3 1 1 0 0  2 2 0 1 1 1  2 3 1 1 0 0  0 3 0 3 0 1  1 3 1 2 0 0  1 1 0 2 2 1  1 3 12 0 0  0 3 0 3 0 1  1 3 1 2 0 0  0 3 0 3 0 1  2 3 1 1 0 0  0 3 0 3 0 1  1 3 1 2 0 0  1 1 0 2 2 1  1 3 1 2 0 0  0 3 0 3 0 1  2 3 1 1 0 0  2 2 0 1 1 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  2 2 0 1 1 1  2 3 1 1 0 00 3 0 3 0 1  2 3 1 1 0 0  2 2 0 1 1 1  2 3 1 1 0 0  2 2 0 1 1 1  3 3 1 0 0 0  2 2 0 1 1 1  3 3 1 0 0 0  1 3 0 2 0 1  3 3 1 0 0 0  1 3 0 2 0 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  2 2 0 1 1 1  3 3 1 0 0 0  2 2 0 1 1 1  3 3 1 0 0 0  2 2 0 1 1 1  2 3 1 1 0 0  1 3 0 2 0 1  2 3 1 1 0 0  1 3 0 2 0 1  2 3 1 1 0 0  0 3 0 3 0 1  1 3 1 2 0 0  0 3 0 3 0 1  1 3 1 2 0 0  1 1 0 2 2 1  1 3 1 2 0 0  0 3 0 3 0 1  2 3 1 1 0 0  0 3 0 3 0 1  2 3 1 1 0 0  2 2 0 1 1 1  2 3 1 1 0 0  2 2 0 1 1 1  3 3 1 0 0 0  1 3 0 2 0 1  2 3 1 1 0 0  0 3 0 3 0 1  2 3 1 1 0 0  2 2 0 1 1 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  2 2 0 1 1 1  2 3 1 10 0  1 3 0 2 0 1  3 3 1 0 0 0  1 3 0 2 0 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  1 3 0 2 0 1  3 3 1 0 0 0  2 2 0 1 1 1  3 3 1 0 0 0  1 3 0 2 0 1  2 3 1 1 0 0  0 3 0 3 0 1  1 3 1 2 0 0  11 0 2 2 1  1 3 1 2 0 0  0 3 0 3 0 1  2 3 1 1 0 0  2 2 0 1 1 1  3 3 1 0 0 0  2 2 0 1 1 1  2 3 1 1 0 0  0 3 0 3 0 1  2 3 1 1 0 0  0 3 0 3 0 1  1 3 1 2 0 0  0 3 0 3 0 1  1 3 1 2 0 0  0 3 0 3 0 1  2 3 1 1 0 0  1 3 0 2 0 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  1 3 0 2 0 1  2 3 1 1 0 0  1 3 0 2 0 1  2 3 1 1 0 0  0 3 0 3 0 1  2 3 1 1 0 0  1 3 0 2 0 1  2 3 1 1 0 0  1 3 0 2 0 1  2 3 1 1 0 0  0 3 0 3 0 1  2 3 1 1 0 0  1 3 0 2 0 1  3 3 1 0 0 0  1 3 0 2 0 1  3 3 1 0 0 0  1 3 0 2 0 1  2 3 1 1 0 0  2 2 0 1 1 1  3 3 1 0 0 0  2 2 0 1 1 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  2 2 0 1 1 1  2 3 1 1 0 0  2 2 0 1 1 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 00  2 3 0 1 0 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  1 3 0 2 0 1  3 3 1 0 0 0  2 2 0 1 1 1  2 3 1 1 0 0  1 3 0 2 0 1  3 3 1 0 0 0  1 3 0 2 0 1  2 3 1 1 0 0  2 2 0 1 1 1  2 3 1 1 0 0  1 30 2 0 1  2 3 1 1 0 0  2 2 0 1 1 1  2 3 1 1 0 0  0 3 0 3 0 1  1 3 1 2 0 0  0 3 0 3 0 1  2 3 1 1 0 0  2 2 0 1 1 1  3 3 1 0 0 0  1 3 0 2 0 1  2 3 1 1 0 0  2 2 0 1 1 1  3 3 1 0 0 0  2 3 0 1 0 1  3 3 1 0 0 0  2 2 0 1 1 1  2 3 1 1 0 0  0 3 0 3 0 1  1 3 1 2 0 0  1 1 0 2 2 1  1 3 1 2 0 0  1 1 0 2 2 1  1 3 1 2 0 0  1 1 0 2 2 1  2 2 1 1 1 0  1 1 0 2 2 1  1 3 1 2 0 0  1 1 0 2 2 1  2 2 1 1 1 0  1 1 0 2 2 1  2 2 1 1 1 0  2 0 0 1 3 1  3 0 1 0 3 0  1 0 0 2 3 1  3 0 1 0 3 0  2 0 0 1 3 1  3 0 1 0 3 0  1 0 0 2 3 1  1 1 1 2 2 0  1 0 0 2 3 1  3 0 1 0 3 0  1 0 0 2 3 1  3 0 1 0 3 0  1 0 0 2 3 1  2 0 1 1 3 0  1 0 0 2 3 1  3 0 1 0 3 0  2 0 0 1 3 1  3 0 1 0 3 0 2 0 0 1 3 1  3 0 1 0 3 0  1 0 0 2 3 1  2 0 1 1 3 0  0 0 0 3 3 1
+DepthFirstGraphSearch:  (cost=11.0, expansions=11)       3 3 1 0 0 0  2 2 0 1 1 1  2 3 1 1 0 0  0 3 0 3 0 1  1 3 1 2 0 0  1 1 0 2 2 1  2 2 1 1 1 0  2 0 0 1 3 1  3 0 1 0 3 0  1 0 0 2 3 1  1 1 1 2 2 0  0 0 0 3 3 1
+GreedyBestFirstTreeSearch:      (cost=11.0, expansions=13)       3 3 1 0 0 0  2 2 0 1 1 1  2 3 1 1 0 0  0 3 0 3 0 1  1 3 1 2 0 0  1 1 0 2 2 1  2 2 1 1 1 0  2 0 0 1 3 1  3 0 1 0 3 0  1 0 0 2 3 1  2 0 1 1 3 0  0 0 0 3 3 1
+GreedyBestFirstGraphSearch:     (cost=11.0, expansions=11)       3 3 1 0 0 0  1 3 0 2 0 1  2 3 1 1 0 0  0 3 0 3 0 1  1 3 1 2 0 0  1 1 0 2 2 1  2 2 1 1 1 0  2 0 0 1 3 1  3 0 1 0 3 0  1 0 0 2 3 1  1 1 1 2 2 0  0 0 0 3 3 1
+AstarTreeSearch:        (cost=11.0, expansions=72)       3 3 1 0 0 0  2 2 0 1 1 1  2 3 1 1 0 0  0 3 0 3 0 1  1 3 1 2 0 0  1 1 0 2 2 1  2 2 1 1 1 0  2 0 0 1 3 1  3 0 1 0 3 0  1 0 0 2 3 1  2 0 1 1 3 0  0 0 0 3 3 1
+AstarGraphSearch:       (cost=11.0, expansions=14)       3 3 1 0 0 0  2 2 0 1 1 1  2 3 1 1 0 0  0 3 0 3 0 1  1 3 1 2 0 0  1 1 0 2 2 1  2 2 1 1 1 0  2 0 0 1 3 1  3 0 1 0 3 0  1 0 0 2 3 1  1 1 1 2 2 0  0 0 0 3 3 1
+IterativeDeepeningTreeSearch:   (cost=11.0, expansions=11343)    3 3 1 0 0 0  2 2 0 1 1 1  2 3 1 1 0 0  0 3 0 3 0 1  1 3 1 2 0 0  1 1 0 2 2 1  2 2 1 1 1 0  2 0 0 1 3 1  3 0 1 0 3 0  1 0 0 2 3 1  2 0 1 1 3 0  0 0 0 3 3 1
+IterativeDeepeningGraphSearch:  (cost=11.0, expansions=11)       3 3 1 0 0 0  2 2 0 1 1 1  2 3 1 1 0 0  0 3 0 3 0 1  1 3 1 2 0 0  1 1 0 2 2 1  2 2 1 1 1 0  2 0 0 1 3 1  3 0 1 0 3 0  1 0 0 2 3 1  1 1 1 2 2 0  0 0 0 3 3 1
+
+Summary:
+
+The heuristic significantly improves the number of expansions needed for most informed search algorithms, for example dropping A* from a 7893 expansion to 36. In the case of Greedy Best First Tree Search, the heuristic helped the algorithm find the optimal solution.
+Iterative Deepening Tree Search got worse, changing from 7512 expansions to 11343.
+
+The heuristic was determined by relaxing the problem so that cannibals no longer ate missionaries. By doing this, the problem per given state becomes the optimal number of trips necessary to transport a maximum of 6 people.
+The algorithm first separates the optimal path of the relaxed problem into a state where the boat is on the left, and the subsequent state where the boat is on the right carrying the maximum number of occupants.
+This results in state pairs (written in the form (numPeopleLeft, numPeopleRight, boatPosition)): {(6, 0, L),(4, 2, R)}, {(5, 1, L),(3, 3, R)}, {(4, 2, L),(2, 4, R)}, {(3, 3, L),(1, 5, R)}, {(2, 4, L),(0, 6, R)}.
+The heuristic algorithm tracks the number of people on the left bank, because if the number of people on the left is 0, the problem is solved.
+When the heuristic algorithm is provided any state with the boat on the right, which will always be a stateon the right, it will translate the second state into the first state by moving 2 people to the left side and moving the boat to the left.
+The number of state pairs to reach the final state is always (the number of people on the left bank in the first state) - 2. Multiplying this value by two results in the number of turns needed to traverse states to the final set.
+If the provided state is the first in a set, and therefore any state where the boat is on the left, the number of turns to solve the problem is off by one, and is simply corrected by adding one.
+
+Since this heuristic solves for the optimal number of turns left in the relaxed problem, this is an admissible heuristic for the cannibals problem.
