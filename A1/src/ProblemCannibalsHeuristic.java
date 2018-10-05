@@ -1,7 +1,7 @@
 import java.util.HashSet;
 import java.util.Set;
 
-public class ProblemCannibals extends Problem {
+public class ProblemCannibalsHeuristic extends Problem {
 
     static final int cannL = 0;
     static final int missL = 1;
@@ -102,10 +102,27 @@ public class ProblemCannibals extends Problem {
 
 	double step_cost(Object fromState, Object toState) { return 1; }
 
-	public double h(Object state) { return 0 ;	}
+	public double h(Object state) {
+		StateCannibals state_can = (StateCannibals)state;
+
+		int totalPeopleOnLeft = state_can.canArray[cannL] + state_can.canArray[missL];
+		if(state_can.canArray[boatR] == 1){
+			totalPeopleOnLeft += 2;
+		}
+
+    int numCyclesLeft = totalPeopleOnLeft - 2;
+    int numTurnsLeft = numCyclesLeft * 2;
+
+    if(state_can.canArray[boatR] == 1){
+      return numTurnsLeft;
+    }else{
+      return numTurnsLeft + 1;
+    }
+	}
+
 
 	public static void main(String[] args) throws Exception {
-		ProblemCannibals problem = new ProblemCannibals();
+		ProblemCannibalsHeuristic problem = new ProblemCannibalsHeuristic();
 		int[] canArray = {3,3,1,0,0,0};
 		problem.initialState = new StateCannibals(canArray);
 
