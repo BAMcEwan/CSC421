@@ -82,6 +82,10 @@ public class ProblemMap extends Problem {
 
 		System.out.println("BreadthFirstGraphSearch:\t" + search.BreadthFirstGraphSearch());
 
+		System.out.println("DepthFirstTreeSearch:\t" + search.DepthFirstTreeSearch());
+
+		System.out.println("DepthFirstGraphSearch:\t" + search.DepthFirstGraphSearch());
+
 		System.out.println("UniformCostTreeSearch:\t" + search.UniformCostTreeSearch());
 
 		System.out.println("UniformCostGraphSearch:\t" + search.UniformCostGraphSearch());
