@@ -176,9 +176,10 @@ public class Search {
 			if( problem.goal_test(node.state) )
 				return Solution(node);
 
-			if( !explored.contains(node.state) && node.depth < limit ) {
+			if( !explored.contains(node.state) ) {
 				explored.add(node.state);
-				frontier.insertAll(Expand(node,problem));
+				if(node.depth < limit)
+					frontier.insertAll(Expand(node,problem));
 				cnt++;
 			}
 		}
