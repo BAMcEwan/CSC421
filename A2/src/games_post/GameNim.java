@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-pubic class GameNim extends Game {
+public class GameNim extends Game {
 
     int WinningScore = 10;
     int LosingScore = -10;
@@ -12,30 +12,41 @@ pubic class GameNim extends Game {
     }
 
     public boolean isWinState(State state) {
-        if (state.coinsOnTable == 0)
+        StateNim tState = (StateNim) state;
+
+        if (tState.coinsOnTable == 0)
             return true;
         return false;
     }
 
+    //Not needed
+    public boolean isStuckState(State state) {
+        return false;
+    }
+
     public Set<State> getSuccessors(State state) {
-        if (isWinState(state))
-            return null;
 
         Set<State> successors = new HashSet<State>();
         StateNim tState = (StateNim) state;
         StateNim successor_state;
 
-        if (tState.coinsOnTable <= 3) {
-            successor_state = new StateNim();
+        if (isWinState(tState))
+            return null;
+
+        //If coins on table is 1 just take the last coin
+        if (tState.coinsOnTable == 1) {
+            successor_state = new StateNim(tState);
             successor_state.player = tState.player == 0 ? 1 : 0;
             successor_state.coinsOnTable = 0;
-            successors.push(successor_state);
-        } else {
+            successors.add(successor_state);
+        } else { //otherwise add 3 successor states to hashset with all subraction options
             for (int i = 0; i<3; i++) {
-                successor_state = new StateNim();
-                successor_state.player = tState.player == 0 ? 1 : 0;
-                successor_state.coinsOnTable -= (i+1);
-                successors.push(successor_state);
+                if (tState.coinsOnTable > (i+1)) { //only add successors that don't put coins to <1
+                    successor_state = new StateNim(tState);
+                    successor_state.player = tState.player == 0 ? 1 : 0;
+                    successor_state.coinsOnTable -= (i+1);
+                    successors.add(successor_state);
+                }
             }
         }
         return successors;
@@ -44,14 +55,14 @@ pubic class GameNim extends Game {
     public double eval(State state) {
 
         int previous_player = state.player == 0 ? 1 : 0;
+        StateNim tState = (StateNim) state;
 
-        if (isWinState(state)) {
-            if (previous_player == 0)
-                return WinningScore;
-            else
-                return LosingScore;
-        }
-        
+        if (tState.coinsOnTable == 1)
+            return WinningScore;
+        else if(tState.coinsOnTable <= 4)
+            return LosingScore;
+
+        return NeutralScore;
     }
 
     public static void main(String[] args) throws Exception {
@@ -64,14 +75,23 @@ pubic class GameNim extends Game {
 
         while (true) {
 
-            StaticNim nextState = null;
+            StateNim nextState = null;
 
             switch (game.currentState.player) {
 
                 case 0: //Do Computer stuff here
-                    nextState = (StateNim)state.bestSuccessorState(depth);
+                    Set<State> successors = game.getSuccessors(game.currentState);
+                    int bestVal = -100;
+                    for(State successor : successors) {
+                        StateNim tState = (StateNim) successor;
+                        int newVal = (int)game.eval(tState);
+                        if (newVal > bestVal) {
+                            nextState = tState;
+                            bestVal = newVal;
+                        }
+                    }
                     nextState.player = 0;
-
+                    System.out.println("Computer: " + nextState);
 
                     break;
 
@@ -81,7 +101,7 @@ pubic class GameNim extends Game {
                     int toRemove = Integer.parseInt( in.readLine() );
 
                     nextState = new StateNim((StateNim)game.currentState);
-                    nextState.player = 0;
+                    nextState.player = 1;
                     if (nextState.coinsOnTable < toRemove)
                         nextState.coinsOnTable = 0;
                     else
@@ -93,15 +113,14 @@ pubic class GameNim extends Game {
 
             game.currentState = nextState;
             game.currentState.player = game.currentState.player == 0 ? 1 : 0;
-
-            if (game.isWinState(currentState)) {
-                if (currentState.player == 1)
+            
+            if (game.isWinState(game.currentState)) {
+                if (game.currentState.player == 0)
                     System.out.println("Computer Wins!");
                 else
                     System.out.println("You Win!");
                 break;
             }
         }
-
     }
 }

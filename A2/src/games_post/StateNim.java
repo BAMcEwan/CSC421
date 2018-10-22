@@ -15,13 +15,13 @@ public class StateNim extends State {
     }
 
     //init with coinsOnTable and player set to given state
-    public StateNim(State state) {
+    public StateNim(StateNim state) {
         coinsOnTable = state.coinsOnTable;
         player = state.player;
     }
 
     //toString just returns the current game state (number of coins on table)
-    public toString() {
+    public String toString() {
         return "Coins currently on table: " + coinsOnTable + "\n";
     }
 }
