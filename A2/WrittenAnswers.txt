@@ -43,8 +43,9 @@ C = {
     }
 
 Q3:
+See code in CSPZebra.java.
 
-The Zebra lives in the fifth house, and water is drunk in the first house.
+The zebra lives in the fifth house, and water is drunk in the first house.
 
 1   Norwegian   Yellow  Water           Kools           Fox
 2   Ukrainian   Blue    Tea             Chesterfield    Horse
