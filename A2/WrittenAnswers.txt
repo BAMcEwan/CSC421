@@ -1,0 +1,53 @@
+Q1:
+
+See code in GameNim.java and StateNim.java for answer to this question
+
+Q2:
+
+As suggested in the problem hint let's define out variables in terms of "term-slots",
+so the courses themselves are the variables. Note for simplicity we will write
+the courses out not by their numbers but as x0, x1, x2, etc... and define the
+value of these variables as xi = (term, termslot, timeslot), where 0=<i<=n
+
+V = (x0, x1, x2, ..., xn), where n is total number of courses
+
+Each part of these variables has a domain:
+    Dterm = {term0, term1, term2, ..., termk}, where k is number of terms
+    Dtermslot = {ts0, ts1, ts2, ts3}
+    Dtimeslot = {t0, t1, t2, ..., tl}, where l is number of time slots in a day
+
+We will now use these domains to formalize the constraints one at a time:
+
+1. Courses might have prerequisite courses that need to to be taken before
+    If xi is prerequisite to xj then term(x1) < term(x2) (where i,j are arbitrary indices)
+    (if xi = prereq(xj) then xi.term < xj.term)
+
+2. Some course are offered in certain times only
+    If xi has only 1 timeslot tj then timeslot(tj) = xi (where i,j are arbitrary indices)
+    (if xi.timeslot = {tj} then tj = xi)
+
+3. We want to take not more than 4 course per term.
+    We actually take care of this constraint in the formulation of the domain for termslot.
+    However, lets formalize it anyways:
+    (xi.timeslot = ti where i is positive integer and i<5)
+
+4. Time conflicts should be avoided
+    (If xi.timeslot = xj.timeslot = tk then (tk = xi || tk = xj) && tk != {xi, xj})
+
+All together:
+C = {
+        (if xi = prereq(xj) then xi.term < xj.term),
+        (if xi.timeslot = {tj} then tj = xi),
+        (xi.timeslot = ti where i is positive integer and i<5),
+        (If xi.timeslot = xj.timeslot = tk then (tk = xi || tk = xj) && tk != {xi, xj})
+    }
+
+Q3:
+
+The Zebra lives in the fifth house, and water is drunk in the first house.
+
+1   Norwegian   Yellow  Water           Kools           Fox
+2   Ukrainian   Blue    Tea             Chesterfield    Horse
+3   Englishman  Red     Milk            Old-Gold        Snails
+4   Spaniard    Ivory   Orange Juice    Lucky-Strike    Dog
+5   Japanese    Green   Coffee          Parliament      Zebra

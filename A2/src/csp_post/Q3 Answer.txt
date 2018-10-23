@@ -1,7 +1,0 @@
-The Zebra lives in the fifth house, and water is drunk in the first house.
-
-1   Norwegian   Yellow  Water           Kools           Fox
-2   Ukrainian   Blue    Tea             Chesterfield    Horse
-3   Englishman  Red     Milk            Old-Gold        Snails
-4   Spaniard    Ivory   Orange Juice    Lucky-Strike    Dog
-5   Japanese    Green   Coffee          Parliament      Zebra
